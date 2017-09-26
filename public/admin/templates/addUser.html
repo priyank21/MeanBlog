@@ -1,0 +1,123 @@
+<style type="text/css">
+    .spn {
+  color: red;
+  font-weight: bold;
+  padding: 0;
+  margin: 5px 0;
+}
+</style>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            User
+            <small>Add User</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin/dashboard#/userList"><i class="fa fa-dashboard"></i> User</a></li>
+            <li class="active">Add User</li>
+        </ol>
+    </section>
+    <section class="content">
+
+
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add User</h3>
+                    </div>
+                    <div class="form-group">
+                        <div class="alert alert-{{success}}" ng-show="message">
+                            <strong ng-bind="message" ></strong> 
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+
+                    <form role="form" name="adduserform" ng-submit="addUser()">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">First Name</label>
+                                <input type="text" class="form-control" name='firstname' ng-model='user.firstname' required="" ng-minlength="3" ng-maxlength="20" placeholder="First Name">
+                                <span ng-show="adduserform.$submitted || adduserform.firstname.$touched">
+                                    <span class="spn" ng-show="adduserform.firstname.$error.minlength">* Firstname should have at least 3 characters.</span> 
+                                    <span class="spn" ng-show="adduserform.firstname.$error.required">* Firstname is required </span>
+                                    <span class="spn" ng-show="adduserform.firstname.$error.maxlength">* Firstname should have at most 20 characters.</span> 
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Last Name</label>
+                                <input type="text" class="form-control"  name='lastname' ng-model='user.lastname' required="" ng-minlength="3" ng-maxlength="20" placeholder="Last Name">
+                                <span ng-show="adduserform.$submitted || adduserform.lastname.$touched">
+                                    <span class="spn" ng-show="adduserform.lastname.$error.minlength">* Lastname should have at least 3 characters.</span> 
+                                    <span class="spn" ng-show="adduserform.lastname.$error.required">* Lastname is required </span>
+                                    <span class="spn" ng-show="adduserform.lastname.$error.maxlength">* Lastname should have at most 12 characters.</span> 
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control"  name='email' ng-model='user.email' required="" placeholder="Enter email address">
+                                <span ng-show="adduserform.$submitted || adduserform.email.$touched">
+                                    <span class="spn" ng-show="adduserform.email.$error.email">* Please enter a valid email address</span> 
+                                    <span class="spn" ng-show="adduserform.email.$error.required">* Email is required </span>
+                                    
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" name='password' ng-pattern="/^[a-zA-Z0-9]*$/" ng-model='user.password' id="Password" placeholder="Password" ng-minlength="6" required>
+                                <span ng-show="adduserform.$submitted || adduserform.password.$touched">
+                                    <span class="spn" ng-show="adduserform.password.$error.pattern">* Please use numbers/letters only</span> 
+                                    <span class="spn" ng-show="adduserform.password.$error.required">* Password is required </span>
+                                    <span class="spn" ng-show="adduserform.password.$error.minlength">Password should be more then 6 charactor</span>
+                                </span>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Confirm Password</label>
+                                <input type="password" class="form-control" ng-model='user.cpassword' required="" id="ConfirmPassword" placeholder="Confirm Password" name="cpassword" >
+                                <span ng-show="adduserform.$submitted || adduserform.cpassword.$touched">
+                                    <span class="spn" ng-show="adduserform.cpassword.$error.required">* Password is required </span>
+                                    <span class="spn" ng-show="user.password != user.cpassword">Your passwords must match.</span>
+                                </span>
+
+                            </div>                  
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">DOB</label>
+                                <input type="date" class="form-control" required="" name='dob' ng-model='user.dob' placeholder="DOB">
+                                    <md-datepicker ng-model="ctrl.myDate" md-current-view="year" md-placeholder="Enter date"></md-datepicker>
+                            
+
+
+
+                            </div> 
+                            <div class='form-group'>
+                                    <select name="role" class="form-control" ng-model='user.role' required="">    
+                                        <option value="">--Select Role--</option>
+                                        <option  value="user">User</option>
+                                        <option  value="admin">Admin</option>
+                                    </select>
+                                </div>
+                            <div class='form-group'>
+                                    <select name="status" class="form-control" ng-model='user.status' required="">    
+                                        <option value="" >--Select Status--</option>
+                                        <option  value="1">Activate</option>
+                                        <option  value="0">DeActivate</option>
+                                    </select>
+                                </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <input type="submit"  ng-disabled="adduserform.$invalid" name="submit" value="Add User" class='btn btn-primary'>                   
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
